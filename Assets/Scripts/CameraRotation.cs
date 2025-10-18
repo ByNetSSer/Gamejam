@@ -20,12 +20,6 @@ public class CameraRotation : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    private void Update()
-    {
-       
-
-    }
-
     #endregion
     private void MovementCamera(Vector2 value)
     {

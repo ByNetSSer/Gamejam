@@ -1,3 +1,4 @@
+using DamageNumbersPro;
 using UnityEngine;
 
 public class Destruct : Objects
@@ -9,7 +10,8 @@ public class Destruct : Objects
     [SerializeField] GameObject drops;
     [SerializeField] int dropcount;
     [SerializeField] float force;
-
+    [SerializeField] DamageNumber prefab;
+    [SerializeField] AudioClip audio;
     private void Start()
     {
 
@@ -29,6 +31,10 @@ public class Destruct : Objects
     {
         if (!CanInteract) return;
         current -= damage;
+        if (prefab != null)
+        {
+            DamageNumber damageNumber = prefab.Spawn(transform.position, damage);
+        }
         if (current < 0)
         {
             DestroyObject();
@@ -42,6 +48,15 @@ public class Destruct : Objects
         {
             Instantiate(destroy, transform.position, Quaternion.identity);
         }
+        TimeSlow.instance.ActivateTimeSlow(0.2f);
+        if (Combo.Instance != null)
+        {
+            //puntosadicionales
+           // Combo.Instance.AddScore(); // Puntos base
+            Combo.Instance.Registr();
+        }
+        
+        
         GenerateCircleDrops();
         Destroy(gameObject);
     }

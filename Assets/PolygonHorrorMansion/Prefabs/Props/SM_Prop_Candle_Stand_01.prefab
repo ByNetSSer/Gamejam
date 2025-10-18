@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23844301531264028}
   - component: {fileID: 3281920526441411699}
   - component: {fileID: 6423764485051983947}
+  - component: {fileID: 9726918985492150}
   m_Layer: 0
   m_Name: SM_Prop_Candle_Stand_01
   m_TagString: Untagged
@@ -136,3 +137,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9726918985492150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031290125071246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6128d34150a1949a50f06efedab347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInteract: 1
+  Health: 5
+  current: 0
+  destroy: {fileID: 0}
+  drops: {fileID: 838370161949502537, guid: 9c24ba30cb283a649a09937ab19384d4, type: 3}
+  dropcount: 5
+  force: 8

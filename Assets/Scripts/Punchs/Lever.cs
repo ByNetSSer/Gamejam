@@ -5,11 +5,12 @@ public class Lever : Objects
 {
     [SerializeField] bool isactive = false;
     [SerializeField] GameObject[] activate;
-    [SerializeField] Animator animator;
+    [SerializeField] Animator animator;//propia palanca
     //animator
 
     public override void Interact()
     {
+        Debug.Log("interactuaron con la palanca");
         if (isactive) return;
 
         if (CanInteract)
@@ -18,12 +19,12 @@ public class Lever : Objects
     }
     private void onLever()
     {
-        isactive = !isactive;
+        //isactive = !isactive;
         foreach (GameObject obj in activate)
         {
+            CanInteract = false; 
             if (obj != null)
-                obj.SetActive(isactive);
-
+            obj.GetComponent<Animator>().enabled = true;
             //su animator en cada uno
         }
     }

@@ -3,7 +3,8 @@ using UnityEditor;
 
 namespace DamageNumbersPro
 {
-    [CustomEditor(typeof(DamageNumberSprite), true), CanEditMultipleObjects]
+   // [CustomEditor(typeof(DamageNumberSprite), true), CanEditMultipleObjects]
+   /*
     public class DamageNumberSpriteEditor : Editor
     {
         public override void OnInspectorGUI()
@@ -80,4 +81,5 @@ namespace DamageNumbersPro
 
         }
     }
+   */
 }

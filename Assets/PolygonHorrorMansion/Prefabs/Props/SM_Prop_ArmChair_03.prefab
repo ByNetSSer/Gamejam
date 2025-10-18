@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 33800606598858488}
   - component: {fileID: 23295832186685090}
   - component: {fileID: 80581437305307107}
+  - component: {fileID: 1436283245012817897}
+  - component: {fileID: 1109185149525898759}
+  - component: {fileID: 6713738929525699798}
   m_Layer: 0
   m_Name: SM_Prop_ArmChair_03
   m_TagString: Untagged
@@ -108,3 +111,71 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7, y: 0.47, z: 0.72}
   m_Center: {x: -0.000000029802322, y: 0.25, z: -0.03}
+--- !u!65 &1436283245012817897
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201518481949606}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.49, y: 1.5229653, z: 0.25}
+  m_Center: {x: -0.000000029802322, y: 0.76148254, z: -0.36}
+--- !u!114 &1109185149525898759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201518481949606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6128d34150a1949a50f06efedab347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInteract: 1
+  Health: 9
+  current: 0
+  destroy: {fileID: 0}
+  drops: {fileID: 838370161949502537, guid: 9c24ba30cb283a649a09937ab19384d4, type: 3}
+  dropcount: 15
+  force: 3
+  audio: {fileID: 0}
+--- !u!54 &6713738929525699798
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201518481949606}
+  serializedVersion: 4
+  m_Mass: 3
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

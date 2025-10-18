@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23970195168634908}
   - component: {fileID: 3844010720274233907}
   - component: {fileID: 8587942212008532498}
+  - component: {fileID: 6916854729350633727}
   m_Layer: 0
   m_Name: SM_Prop_Goblet_01
   m_TagString: Untagged
@@ -138,3 +139,23 @@ CapsuleCollider:
   m_Height: 0.30292273
   m_Direction: 1
   m_Center: {x: 0.00000013411045, y: 0.15146136, z: -0.0000000037252903}
+--- !u!114 &6916854729350633727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481793826773642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6128d34150a1949a50f06efedab347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInteract: 1
+  Health: 2
+  current: 0
+  destroy: {fileID: 0}
+  drops: {fileID: 838370161949502537, guid: 9c24ba30cb283a649a09937ab19384d4, type: 3}
+  dropcount: 2
+  force: 1
+  audio: {fileID: 0}

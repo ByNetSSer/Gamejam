@@ -7,19 +7,21 @@ public class Fist : MonoBehaviour
     public bool EsActive = false;
     public float Rencoil = 0.2f;
     public BoxCollider box;
+    public Transform position;
     public void punch()
     {
         if (EsActive) return;
         EsActive = true;
-        box.enabled = true;
+        //general
+        PunchManager.Instance.CreatePunchExplosion(position.position);
         StartCoroutine( rencoil());
-
+        
     }
     IEnumerator rencoil()
     {
         yield return new WaitForSeconds(Rencoil);
         EsActive=false;
-        box.enabled = false;
+      
     }
     private void OnCollisionEnter(Collision collision)
     {

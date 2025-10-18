@@ -17,21 +17,15 @@ public class Item : MonoBehaviour
     private void CollecItem()
     {
 
-        GameManager.CollectItem(value);
-       // SpawnDamageNumber();
-        //GameManager.instance.spawn(value,this.transform.position);
-        Destroy(this.gameObject);
-    }
-    private void SpawnDamageNumber()
-    {
-        if (Ui.instance != null)
+      // 
+        if (Combo.Instance != null && Combo.Instance.CurrentCombo > 0)
         {
-            Ui.instance.SpawnDamageNumber(value, transform);
+            Combo.Instance.RegisterCandyDuringCombo(value);
         }
         else
         {
-           
+            GameManager.CollectItem(value);
         }
+        Destroy(this.gameObject);
     }
-
 }

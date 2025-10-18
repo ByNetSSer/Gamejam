@@ -1,12 +1,16 @@
-using UnityEngine;
+using DamageNumbersPro;
+using DamageNumbersPro.Demo;
 using System;
 using System.Drawing;
-using DamageNumbersPro.Demo;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public TextMeshProUGUI text;
+     public DamageNumber prefab;
+    public RectTransform spawntext;
+   
     public int Score;
     public static event Action<int> OnCoinCollected;
     //public DNP_ExampleMesh pro;
@@ -16,9 +20,6 @@ public class GameManager : MonoBehaviour
         instance = this;
         else
             Destroy(this.gameObject);
-
-
-        text.text = this.Score.ToString();
     }
     private void OnEnable()
     {
@@ -34,12 +35,13 @@ public class GameManager : MonoBehaviour
     }
     public void AddScore(int Score)
     {
+
+        DamageNumber scor = prefab.SpawnGUI(spawntext, Vector2.zero,Score);
         this.Score += Score;
-        text.text = this.Score.ToString();
     }
     public void spawn(float number,Vector3 position)
     {
-        
+        //numerosbug
     }
     public void ResetScore()
     {

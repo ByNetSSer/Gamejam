@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using DamageNumbersPro;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Movement movement;
@@ -15,6 +17,17 @@ public class Player : MonoBehaviour
     [SerializeField] float duration = 2f;
     [SerializeField] bool abilitysucces=false;
     [SerializeField] GameObject prefabEx;
+
+    [SerializeField] DamageNumberGUI TextH;
+
+
+    [SerializeField] DamageNumberGUI options;
+
+    [SerializeField] DamageNumberGUI optionsB;
+
+    [SerializeField] RectTransform middle;
+    [SerializeField] RectTransform rightTR;
+    [SerializeField] RectTransform leftTR;
     //tiempo
     private TimeSlow timeSlow;
 
@@ -32,7 +45,6 @@ public class Player : MonoBehaviour
             activate();
         }
     }
-
     public void OnmousebuttonLeft(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -63,7 +75,6 @@ public class Player : MonoBehaviour
                 timeSlow.StopTimeSlow();
             }
             Debug.Log("Correcto");
-            //activarexplocion()
             ActivateExplosion();
         }
         else
@@ -73,8 +84,6 @@ public class Player : MonoBehaviour
             if (timeSlow != null)
                 timeSlow.StopTimeSlow();
         }
-            
-
     }
     void activate()
     {
@@ -85,13 +94,29 @@ public class Player : MonoBehaviour
         if (Random.Range(0f,1f) < 0.5f)
         {
             current = "Trick";
+            DamageNumber gen = TextH.SpawnGUI(middle, Vector2.zero);
+            gen.topText = current;
+
+
+            DamageNumber rightk = options.SpawnGUI(rightTR, Vector2.zero);
+            rightk.topText = "Treat";
+            DamageNumber leftk = optionsB.SpawnGUI(leftTR, Vector2.zero);
+            leftk.topText = "Trick";
         }
         else
         {
             current = "Treat";
+            DamageNumber gen = TextH.SpawnGUI(middle, Vector2.zero);
+            gen.topText = current;
+
+            DamageNumber rightt = optionsB.SpawnGUI(rightTR, Vector2.zero);
+            rightt.topText = "Treat";
+            DamageNumber leftt = options.SpawnGUI(leftTR, Vector2.zero);
+            leftt.topText = "Trick";
         }
+
         if (timeSlow != null)
-            timeSlow.ActivateTimeSlowForAbility(duration);
+            timeSlow.ActivateTimeSlow(duration);
         StartCoroutine(AbilityTimer());
     }
     bool CheckAbility(string punchType)
@@ -107,31 +132,17 @@ public class Player : MonoBehaviour
     IEnumerator AbilityTimer()
     {
         yield return new WaitForSeconds(duration);
-
-        // Si se acaba el tiempo sin éxito
         if (!abilitysucces)
         {
             ability = false;
-            Debug.Log("⏰ Se acabó el tiempo de la habilidad.");
+            //murio la habilidad
         }
     }
     void ActivateExplosion()
     {
         if (prefabEx != null)
         {
-            // Crear la explosión en la posición del jugador
-            GameObject explosion = Instantiate(prefabEx, transform.position, Quaternion.identity);
-
-            // Configurar la explosión
-            Explosition explosionController = explosion.GetComponent<Explosition>();
-            if (explosionController != null)
-            {
-                explosionController.TriggerExplosion(transform.position, explosionForce, explosionRadius);
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No hay prefab de explosión asignado");
+            PunchManager.Instance.CreateSpecialExplosion(this.gameObject.transform.position);
         }
     }
 }

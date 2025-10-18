@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33561317209577706}
   - component: {fileID: 23518955602594578}
   - component: {fileID: 4213214471698710189}
+  - component: {fileID: 5226924598470021275}
+  - component: {fileID: 7974557867667211090}
   m_Layer: 0
   m_Name: SM_Prop_Candle_Stand_02
   m_TagString: Untagged
@@ -108,3 +110,49 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.76, z: 0.14}
   m_Center: {x: -0.07703393, y: 0.38, z: 0}
+--- !u!54 &5226924598470021275
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740829610723736}
+  serializedVersion: 4
+  m_Mass: 2
+  m_Drag: 2
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7974557867667211090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740829610723736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6128d34150a1949a50f06efedab347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInteract: 1
+  Health: 5
+  current: 0
+  destroy: {fileID: 0}
+  drops: {fileID: 838370161949502537, guid: 9c24ba30cb283a649a09937ab19384d4, type: 3}
+  dropcount: 5
+  force: 5
