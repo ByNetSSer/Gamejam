@@ -1,10 +1,6 @@
 ﻿using DamageNumbersPro;
-using JetBrains.Annotations;
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class Player : MonoBehaviour
