@@ -1,5 +1,6 @@
 using DamageNumbersPro;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Destruct : Objects
 {
@@ -11,6 +12,7 @@ public class Destruct : Objects
     [SerializeField] int dropcount;
     [SerializeField] float force;
     [SerializeField] DamageNumber prefab;
+    [SerializeField] GameObject particle;
     [SerializeField] AudioClip audio;
     private void Start()
     {
@@ -19,7 +21,10 @@ public class Destruct : Objects
     }
     public override void Interact()
     {
+
+
         if (!CanInteract) return;
+        //Recibe Accion
         current -= 1;
         if (current < 0)
         {
@@ -30,6 +35,7 @@ public class Destruct : Objects
     public void Interact(int damage)
     {
         if (!CanInteract) return;
+        //recibe daño///////////////////////////
         current -= damage;
         if (prefab != null)
         {
@@ -43,6 +49,7 @@ public class Destruct : Objects
     public void DestroyObject()
     {
         if (!CanInteract) return;
+        //al ser destruido//////////////////////////
         CanInteract = false;
         if (destroy != null)
         {
@@ -55,9 +62,11 @@ public class Destruct : Objects
            // Combo.Instance.AddScore(); // Puntos base
             Combo.Instance.Registr();
         }
-        
-        
+        if(particle != null)
+        Instantiate(particle,transform,true);
+
         GenerateCircleDrops();
+       
         Destroy(gameObject);
     }
     private void GenerateCircleDrops()

@@ -1,12 +1,15 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
-    public float startTimeSeconds = 60f;
-
-
+    public float startTimeSeconds = 120f;
+    public string SceneWin;
+    public string SceneLosse;
+    public int Goal = 1000;
     float timeValue;
     bool running;
 
@@ -29,6 +32,17 @@ public class Timer : MonoBehaviour
             timeValue = 0f;
             running = false;
             Debug.Log("me detube");
+            int scoretotal = GameManager.instance.Score + Combo.Instance.ReturnScoreActual();
+            if (scoretotal < Goal)
+            {
+                Debug.Log("perdiste");
+                SceneManager.LoadScene(SceneLosse);
+            }
+            else
+            {
+                Debug.Log("ganaste");
+                SceneManager.LoadScene(SceneWin);
+            }
         }
 
 

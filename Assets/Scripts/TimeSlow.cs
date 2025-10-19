@@ -17,7 +17,7 @@ public class TimeSlow : MonoBehaviour
     private float originalTimeScale = 1f;
     private float originalFixedDeltaTime = 0.02f;
     private float currentDuration;
-    public float Current;
+  //  public float Current;
     public static TimeSlow instance;
     private bool isTransitioning = false;
 
@@ -27,7 +27,6 @@ public class TimeSlow : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
             originalTimeScale = Time.timeScale;
             originalFixedDeltaTime = Time.fixedDeltaTime;
         }
@@ -48,7 +47,9 @@ public class TimeSlow : MonoBehaviour
     }
     public void ActivateTimeSlow(float abilityDuration)
     {
+
         timeSlowRequests++;
+        //tiempo se lentea ///////////////////////
         if (isTimeSlowed)
         {
             // Opcional: extender la duración actual si lo deseas
@@ -58,11 +59,12 @@ public class TimeSlow : MonoBehaviour
 
         if (timeSlowCoroutine != null)
             StopCoroutine(timeSlowCoroutine);
-
+       // Current = abilityDuration;
         timeSlowCoroutine = StartCoroutine(TimeSlowCount(abilityDuration));
     }
     private IEnumerator TimeSlowCount(float abilityDuration)
     {
+       
         isTimeSlowed = true;
         isTransitioning = true;
         currentDuration = abilityDuration;
@@ -107,6 +109,7 @@ public class TimeSlow : MonoBehaviour
             isTimeSlowed = false;
             isTransitioning = false;
         }
+        
     }
     public void StopTimeSlow()
     {
@@ -128,7 +131,8 @@ public class TimeSlow : MonoBehaviour
     }
     public float GetCurrentDuration()
     {
-        return Current;
+        return 1f;
+       // return Current;
     }
     public bool CanActivateTimeSlow()
     {

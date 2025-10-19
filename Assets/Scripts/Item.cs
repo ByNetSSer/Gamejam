@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
     private void CollecItem()
     {
 
-      // 
+      // Cuando recoge un caramelo /////////////////////////
         if (Combo.Instance != null && Combo.Instance.CurrentCombo > 0)
         {
             Combo.Instance.RegisterCandyDuringCombo(value);

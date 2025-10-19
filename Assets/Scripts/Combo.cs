@@ -1,6 +1,7 @@
 using DamageNumbersPro;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class Combo : MonoBehaviour
@@ -13,7 +14,7 @@ public class Combo : MonoBehaviour
     [SerializeField] float currenttime = 0f;
     [SerializeField] string comboWord = "";
     [SerializeField] int candiesDuringCombo = 0;
-    [SerializeField] float candyMultiplier = 0.1f;
+    [SerializeField] float candyMultiplier = 1f;
 
     [SerializeField] DamageNumberGUI ScoreNumber;
 
@@ -77,6 +78,7 @@ public class Combo : MonoBehaviour
     {
         if (Time.time - currenttime <= comboTime)
         {
+            //Añade combo///////////////////////
             currentCombo++;
             DamageNumber sc = ScoreNumber.SpawnGUI(basetransform,Vector2.zero);
         }
@@ -93,11 +95,11 @@ public class Combo : MonoBehaviour
     {
         if (currentCombo > 0)
         {
-            // SUMAR al contador de candies
+            //Añade puntaje//////////////////////
             candiesDuringCombo += candyValue;
 
             // Crear el número flotante
-            DamageNumber ne = Candynumber.SpawnGUI(candytransform, Vector2.zero,0.1f);
+            DamageNumber ne = Candynumber.SpawnGUI(candytransform, Vector2.zero,1f);
             ne.leftText = "x ";
 
             UpdateUI();
@@ -177,7 +179,13 @@ public class Combo : MonoBehaviour
     // Propiedades para acceder desde otros scripts
     public int CurrentCombo => currentCombo;
     public int CandiesDuringCombo => candiesDuringCombo;
-    public float CurrentMultiplier => 1f + (candiesDuringCombo * candyMultiplier);
+    public float CurrentMultiplier => (candiesDuringCombo * candyMultiplier);
+    public int ReturnScoreActual()
+    {
+        float candyMultiplierTotal = (candiesDuringCombo * candyMultiplier);
+        int comboBonus = Mathf.RoundToInt(currentCombo * candyMultiplierTotal);
+        return comboBonus;
+    }
     public void WordCombo()
     {
         switch (currentCombo)

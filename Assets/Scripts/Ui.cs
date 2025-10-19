@@ -16,10 +16,10 @@ public class Ui : MonoBehaviour
     [SerializeField] private float barHeight = 20f;
     [SerializeField] private float fadeSpeed = 2f;
 
-    private TimeSlow timeSlow;
-    private bool isActive = false;
-    private float currentTime = 0f;
-    private float totalDuration = 0f;
+    [SerializeField]private TimeSlow timeSlow;
+    [SerializeField]private bool isActive = false;
+    [SerializeField] private float currentTime = 0f;
+    [SerializeField] private float totalDuration = 0f;
 
     [SerializeField] private GameObject cubeHighlightPrefab;
     private void Start()
@@ -100,11 +100,5 @@ public class Ui : MonoBehaviour
             canvasGroup.alpha = 0f;
         }
     }
-    public void SpawnDamageNumber(int value, Transform position)
-    {
-    }
-
-
-
 
 }

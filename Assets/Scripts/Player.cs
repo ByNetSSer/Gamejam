@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] string current = "";
     [SerializeField] float duration = 2f;
     [SerializeField] bool abilitysucces=false;
+    [SerializeField] GameObject prefabPArticle;
     [SerializeField] GameObject prefabEx;
 
     [SerializeField] DamageNumberGUI TextH;
@@ -142,6 +143,7 @@ public class Player : MonoBehaviour
     {
         if (prefabEx != null)
         {
+            Instantiate(prefabPArticle,this.transform);
             PunchManager.Instance.CreateSpecialExplosion(this.gameObject.transform.position);
         }
     }

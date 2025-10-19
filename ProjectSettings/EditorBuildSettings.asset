@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PolygonHorrorMansion/Scenes/Demo_01.unity
     guid: dda52f1b21df39c459a6b2eafa31df9d
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: e2c92402f007d9f47b926456effcf3eb
+  - enabled: 1
+    path: Assets/Scenes/LosseScene.unity
+    guid: a47ba462ef17d7f40a340e0a12fb9218
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

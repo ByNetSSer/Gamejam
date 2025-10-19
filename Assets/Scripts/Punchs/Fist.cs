@@ -11,6 +11,7 @@ public class Fist : MonoBehaviour
     public void punch()
     {
         if (EsActive) return;
+        //Golpea///////////////////
         EsActive = true;
         //general
         PunchManager.Instance.CreatePunchExplosion(position.position);

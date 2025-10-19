@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
     }
     private void Update()
     {
+        //yo que se al moverse y saltar xd //////////////
         inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
         inputJ = Input.GetButtonDown("Jump");
