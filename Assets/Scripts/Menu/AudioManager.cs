@@ -9,9 +9,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip menuMusic;
     [SerializeField] private AudioClip gameplayMusic;
 
-    [Header(" Volumen (1-10)")]
-    [Range(1, 10)] public int musicVolume = 5;
-    [Range(1, 10)] public int sfxVolume = 5;
+    [Header(" Volumen (0 a 1)")]
+    [Range(0f, 1f)] public float musicVolume = 1f;
+    [Range(0f, 1f)] public float sfxVolume = 1f;
 
     [Header(" Efectos de Sonido (SFX)")]
     [SerializeField] private AudioClip[] sfxClips;
@@ -84,9 +84,7 @@ public class AudioManager : MonoBehaviour
 
         AudioClip clip = sfxClips[index];
         if (clip != null)
-        {
             sfxSource.PlayOneShot(clip);
-        }
     }
 
     public void PlaySFX(AudioClip clip)
@@ -97,7 +95,11 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateVolumes()
     {
-        musicSource.volume = Mathf.Clamp01(musicVolume / 10f);
-        sfxSource.volume = Mathf.Clamp01(sfxVolume / 10f);
+        musicSource.volume = Mathf.Pow(musicVolume, 2f);
+        sfxSource.volume = Mathf.Pow(sfxVolume, 2f);
+    }
+    public AudioClip GetSFXClip(int index)
+    {
+        return sfxClips[index];
     }
 }

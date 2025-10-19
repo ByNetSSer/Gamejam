@@ -13,7 +13,6 @@ public class Destruct : Objects
     [SerializeField] float force;
     [SerializeField] DamageNumber prefab;
     [SerializeField] GameObject particle;
-    [SerializeField] AudioClip audio;
     private void Start()
     {
 
@@ -66,7 +65,7 @@ public class Destruct : Objects
         Instantiate(particle,transform,true);
 
         GenerateCircleDrops();
-       
+       AudioManager.Instance.PlaySFX(4);
         Destroy(gameObject);
     }
     private void GenerateCircleDrops()

@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         if (context.performed)
         {
             trypunch("Trick");
+            AudioManager.Instance.PlaySFX(2);
         }
     }
     public void OnMouseButtonRight(InputAction.CallbackContext context)
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
         if (context.performed)
         {
             trypunch("Treat");
+            AudioManager.Instance.PlaySFX(2);
         }
     }
     public void trypunch(string ToT)

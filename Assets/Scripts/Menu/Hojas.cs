@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hojas : MonoBehaviour
 {
@@ -17,4 +18,9 @@ public class Hojas : MonoBehaviour
     {
         simple.ResetList();
     }
+    public void SceneGame()
+    {
+        SceneManager.LoadScene("Demo_01");
+    }
+
 }
