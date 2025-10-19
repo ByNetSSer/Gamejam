@@ -20,8 +20,11 @@ public class Movement : MonoBehaviour
     }
     private void Start()
     {
+        
         moveAudioSource = gameObject.AddComponent<AudioSource>();
+        if(AudioManager.Instance !=null)
         moveAudioSource.clip = AudioManager.Instance.GetSFXClip(3);
+
         moveAudioSource.loop = false;
         moveAudioSource.playOnAwake = false;
     }

@@ -129,7 +129,9 @@ MonoBehaviour:
   drops: {fileID: 838370161949502537, guid: 9c24ba30cb283a649a09937ab19384d4, type: 3}
   dropcount: 10
   force: 1
-  audio: {fileID: 0}
+  prefab: {fileID: 0}
+  particle: {fileID: 0}
+  AudioDestruc: {fileID: 8300000, guid: 9a4959a97a3fd7b4a9e91eec56e6f568, type: 3}
 --- !u!54 &3775853043843392511
 Rigidbody:
   m_ObjectHideFlags: 0

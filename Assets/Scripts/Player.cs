@@ -1,9 +1,11 @@
 ﻿using DamageNumbersPro;
+using JetBrains.Annotations;
 using System.Collections;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Movement movement;
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] bool abilitysucces=false;
     [SerializeField] GameObject prefabPArticle;
     [SerializeField] GameObject prefabEx;
+    [SerializeField] AudioClip soundExplosition;
 
     [SerializeField] DamageNumberGUI TextH;
 
@@ -32,16 +35,44 @@ public class Player : MonoBehaviour
     //tiempo
     private TimeSlow timeSlow;
 
-    [SerializeField] private float explosionRadius = 8f;
-    [SerializeField] private float explosionForce = 1200f;
+    [SerializeField] float explosionRadius = 8f;
+    [SerializeField] float explosionForce = 1200f;
+    [SerializeField] float cooldown = 5f;
+    [SerializeField] Image vooldownimage;
+   [SerializeField] bool iscooldown = false;
+    [SerializeField]float currentcoldown = 0;
 
     private void Start()
     {
         timeSlow = TimeSlow.instance;
+        if (vooldownimage != null)
+        {
+            vooldownimage.fillAmount = 0f;
+        }
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (iscooldown)
+        {
+            currentcoldown -= Time.deltaTime;
+            if (vooldownimage != null)
+            {
+                vooldownimage.fillAmount = currentcoldown / cooldown;
+            }
+            if (currentcoldown <= 0f)
+            {
+                iscooldown = false;
+                currentcoldown = 0f;
+                if (vooldownimage != null)
+                {
+                    vooldownimage.fillAmount = 0f;
+                }
+            }
+        }
+    }
+    public void OnPressHability(InputAction.CallbackContext context)
+    {
+        if (context.performed && !iscooldown)
         {
             activate();
         }
@@ -51,7 +82,7 @@ public class Player : MonoBehaviour
         if (context.performed)
         {
             trypunch("Trick");
-            AudioManager.Instance.PlaySFX(2);
+            
         }
     }
     public void OnMouseButtonRight(InputAction.CallbackContext context)
@@ -59,7 +90,7 @@ public class Player : MonoBehaviour
         if (context.performed)
         {
             trypunch("Treat");
-            AudioManager.Instance.PlaySFX(2);
+ 
         }
     }
     public void trypunch(string ToT)
@@ -93,7 +124,7 @@ public class Player : MonoBehaviour
         if (ability) return;
         ability = true;
         abilitysucces = false;
-
+        StartCooldown();
         if (Random.Range(0f,1f) < 0.5f)
         {
             current = "Trick";
@@ -132,6 +163,16 @@ public class Player : MonoBehaviour
 
         return false;
     }
+    void StartCooldown()
+    {
+        iscooldown = true;
+        currentcoldown = cooldown;
+
+        if (vooldownimage != null)
+        {
+            vooldownimage.fillAmount = 1f; // Lleno al inicio
+        }
+    }
     IEnumerator AbilityTimer()
     {
         yield return new WaitForSeconds(duration);
@@ -145,6 +186,8 @@ public class Player : MonoBehaviour
     {
         if (prefabEx != null)
         {
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(soundExplosition);
             Instantiate(prefabPArticle,this.transform);
             PunchManager.Instance.CreateSpecialExplosion(this.gameObject.transform.position);
         }

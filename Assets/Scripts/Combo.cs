@@ -25,6 +25,7 @@ public class Combo : MonoBehaviour
     [SerializeField] TextMeshProUGUI CombowordText;
     [SerializeField] Image TimeBar;
     [SerializeField] TextMeshProUGUI CandyMultiplierText;
+    [SerializeField] AudioClip soundFinishcombo;
     private float width;
     private void Awake()
     {
@@ -48,6 +49,8 @@ public class Combo : MonoBehaviour
         if (Time.time - currenttime > comboTime && currentCombo > 0)
         {
             Debug.Log("termino el combo");
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(soundFinishcombo);
             AddFinalComboScore();
             ResetCombo();
            
@@ -80,7 +83,8 @@ public class Combo : MonoBehaviour
         {
             //Añade combo///////////////////////
             currentCombo++;
-            DamageNumber sc = ScoreNumber.SpawnGUI(basetransform,Vector2.zero);
+            DamageNumber sc = Candynumber.SpawnGUI(basetransform,Vector2.zero);
+            sc.leftText = "x ";
         }
         else
         {
@@ -99,8 +103,8 @@ public class Combo : MonoBehaviour
             candiesDuringCombo += candyValue;
 
             // Crear el número flotante
-            DamageNumber ne = Candynumber.SpawnGUI(candytransform, Vector2.zero,1f);
-            ne.leftText = "x ";
+            DamageNumber ne = ScoreNumber.SpawnGUI(candytransform, Vector2.zero,1f);
+            
 
             UpdateUI();
         }

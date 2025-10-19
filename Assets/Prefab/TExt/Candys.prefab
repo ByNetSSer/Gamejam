@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   permanent: 0
-  lifetime: 2
+  lifetime: 3.5
   unscaledTime: 0
   enable3DGame: 0
   faceCameraView: 1
@@ -682,7 +682,7 @@ MonoBehaviour:
     absorberScaleFactor: 1.5
     absorberScaleFade: 15
     instantGain: 0
-    bonusLifetime: 1
+    bonusLifetime: 0
   enableDestruction: 0
   destructionSettings:
     maxDistance: 2

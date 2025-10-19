@@ -1,9 +1,17 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixer audioMixer;
+
+    [Header("Mixer Groups")]
+    [SerializeField] private AudioMixerGroup musicMixerGroup;
+    [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
     [Header(" Música")]
     [SerializeField] private AudioClip menuMusic;
@@ -21,6 +29,10 @@ public class AudioManager : MonoBehaviour
 
     private string currentSceneName = "";
 
+    // Parámetros del mixer (deben coincidir con los del Audio Mixer)
+    private const string MUSIC_VOLUME_PARAM = "MusicVolume";
+    private const string SFX_VOLUME_PARAM = "SFXVolume";
+
     private void Awake()
     {
         if (Instance == null)
@@ -35,7 +47,15 @@ public class AudioManager : MonoBehaviour
         }
 
         musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.playOnAwake = true;
         sfxSource = gameObject.AddComponent<AudioSource>();
+
+        // Asignar los mixer groups
+        if (musicMixerGroup != null)
+            musicSource.outputAudioMixerGroup = musicMixerGroup;
+
+        if (sfxMixerGroup != null)
+            sfxSource.outputAudioMixerGroup = sfxMixerGroup;
 
         musicSource.loop = true;
         musicSource.playOnAwake = false;
@@ -55,6 +75,7 @@ public class AudioManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentSceneName = scene.name;
+        musicSource.Stop();
         PlayMusicForScene(currentSceneName);
     }
 
@@ -66,7 +87,7 @@ public class AudioManager : MonoBehaviour
             nextClip = menuMusic;
         else if (sceneName == "Demo_01")
             nextClip = gameplayMusic;
-
+       
         if (nextClip != null && musicSource.clip != nextClip)
         {
             musicSource.clip = nextClip;
@@ -95,11 +116,40 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateVolumes()
     {
-        musicSource.volume = Mathf.Pow(musicVolume, 2f);
-        sfxSource.volume = Mathf.Pow(sfxVolume, 2f);
+        // Convertir volumen lineal (0-1) a decibelios (-80 a 0) para el mixer
+        musicSource.volume = musicVolume;
+        sfxSource.volume = sfxVolume;
+
+        // Aplicar al Audio Mixer
+        if (audioMixer != null)
+        {
+            audioMixer.SetFloat(MUSIC_VOLUME_PARAM, LinearToDecibels(musicVolume));
+            audioMixer.SetFloat(SFX_VOLUME_PARAM, LinearToDecibels(sfxVolume));
+        }
+    }
+    private float LinearToDecibels(float linear)
+    {
+        if (linear <= 0f)
+            return -80f; // Silencio
+        return Mathf.Log10(linear) * 20f;
+    }
+
+    // Conversión de decibelios a volumen lineal (para sliders)
+    private float DecibelsToLinear(float db)
+    {
+        return Mathf.Pow(10f, db / 20f);
     }
     public AudioClip GetSFXClip(int index)
     {
         return sfxClips[index];
+    }
+    public AudioMixerGroup GetSFXMixerGroup()
+    {
+        return sfxMixerGroup;
+    }
+
+    public AudioMixerGroup GetMusicMixerGroup()
+    {
+        return musicMixerGroup;
     }
 }

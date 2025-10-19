@@ -12,6 +12,8 @@ public class Fist : MonoBehaviour
     {
         if (EsActive) return;
         //Golpea///////////////////
+        if(AudioManager.Instance != null) 
+        AudioManager.Instance.PlaySFX(2);
         EsActive = true;
         //general
         PunchManager.Instance.CreatePunchExplosion(position.position);

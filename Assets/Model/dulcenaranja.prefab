@@ -155,9 +155,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7242979083450469461, guid: b4070ba12c5c4954e8480d690d72b036, type: 3}
+      propertyPath: AudioDestruc
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cb562aa1498c504a9264bd03f592a84, type: 3}
     - target: {fileID: 8519039047942089877, guid: b4070ba12c5c4954e8480d690d72b036, type: 3}
       propertyPath: m_Radius
-      value: 6.3
+      value: 11.92
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

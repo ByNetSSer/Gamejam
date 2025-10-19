@@ -3,7 +3,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField] private int value;
-
+    [SerializeField] AudioClip AudioDestruc;
     //caramelos,puntaje
     //items collecionables
     //powerups
@@ -14,10 +14,20 @@ public class Item : MonoBehaviour
             CollecItem();
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            CollecItem();
+        }
+    }
+
+        
+    
     private void CollecItem()
     {
 
-      // Cuando recoge un caramelo /////////////////////////
+        // Cuando recoge un caramelo /////////////////////////
         if (Combo.Instance != null && Combo.Instance.CurrentCombo > 0)
         {
             Combo.Instance.RegisterCandyDuringCombo(value);
@@ -26,6 +36,16 @@ public class Item : MonoBehaviour
         {
             GameManager.CollectItem(value);
         }
+
+        // Usar el AudioManager exclusivo para monedas
+        if (CoinSound.Instance != null)
+        {
+            if (AudioDestruc == null)
+                CoinSound.Instance.PlayCoinSound(); 
+            else
+                CoinSound.Instance.PlayCoinSound(AudioDestruc); 
+        }
+
         Destroy(this.gameObject);
     }
 }

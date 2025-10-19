@@ -33,7 +33,10 @@ public class Timer : MonoBehaviour
             running = false;
             Debug.Log("me detube");
             int scoretotal = GameManager.instance.Score + Combo.Instance.ReturnScoreActual();
-            if (scoretotal < Goal)
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Debug.Log("consegui " + scoretotal + " puntos");
+            if (scoretotal <= Goal)
             {
                 Debug.Log("perdiste");
                 SceneManager.LoadScene(SceneLosse);
