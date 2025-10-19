@@ -36,6 +36,7 @@ public class Timer : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Debug.Log("consegui " + scoretotal + " puntos");
+            //almacenar
             if (scoretotal <= Goal)
             {
                 Debug.Log("perdiste");

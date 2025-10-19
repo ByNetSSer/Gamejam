@@ -1,6 +1,7 @@
 ﻿using DamageNumbersPro;
 using JetBrains.Annotations;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Events;
@@ -28,6 +29,9 @@ public class Player : MonoBehaviour
     [SerializeField] DamageNumberGUI options;
 
     [SerializeField] DamageNumberGUI optionsB;
+
+    [SerializeField] DamageNumberGUI Slow;
+    [SerializeField] RectTransform spawn;
 
     [SerializeField] RectTransform middle;
     [SerializeField] RectTransform rightTR;
@@ -74,6 +78,7 @@ public class Player : MonoBehaviour
     {
         if (context.performed && !iscooldown)
         {
+            Slow.SpawnGUI(spawn,Vector2.zero);
             activate();
         }
     }

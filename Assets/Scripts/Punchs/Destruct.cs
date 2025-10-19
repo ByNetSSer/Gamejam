@@ -1,5 +1,6 @@
 using DamageNumbersPro;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
 
 public class Destruct : Objects
@@ -14,6 +15,7 @@ public class Destruct : Objects
     [SerializeField] DamageNumber prefab;
     [SerializeField] GameObject particle;
     [SerializeField] AudioClip AudioDestruc;
+    [SerializeField]private UnityEvent onInteract;
     private void Start()
     {
 
@@ -37,6 +39,7 @@ public class Destruct : Objects
         if (!CanInteract) return;
         //recibe daño///////////////////////////
         current -= damage;
+        onInteract?.Invoke();
         if (prefab != null)
         {
             DamageNumber damageNumber = prefab.Spawn(transform.position, damage);
